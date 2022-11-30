@@ -43,8 +43,10 @@ function addIconToPanel(statusIcon) {
     const settings = SettingsManager.getDefaultGSettings();
     const indicatorId = `appindicator-${statusIcon.uniqueId}`;
 
+    log(`indicatorStatusIcon::addIconToPanel ${indicatorId}`);
     const currentIcon = Main.panel.statusArea[indicatorId];
     if (currentIcon) {
+        log(`indicatorStatusIcon::exist ${indicatorId}`);
         if (currentIcon !== statusIcon)
             currentIcon.destroy();
 
@@ -514,7 +516,7 @@ class AppIndicatorsIndicatorTrayIcon extends BaseStatusIcon {
     }
 
     get uniqueId() {
-        return `legacy:${this._icon.wm_class}:${this._icon.pid}`;
+        return `legacy:${this._icon.wm_class}:${this._icon.pid}:${this._icon}`;
     }
 
     vfunc_navigate_focus(from, direction) {
